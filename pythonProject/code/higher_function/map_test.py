@@ -1,6 +1,6 @@
 # -*-coding:utf-8-*-
 from functools import wraps
-from time import time
+from time import time, sleep
 
 
 def record_time(func):
@@ -15,7 +15,9 @@ def record_time(func):
     return wrapper
 
 
+@record_time
 def sum1(x, y, comp=lambda x, y: x + y):
+    sleep(0.1)
     return comp(x, y)
 
 
@@ -29,7 +31,8 @@ def main():
     print(list1)
     list1 = list(map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, range(1, 10))))
     print(list1)
-    print(record_time(sum1(2, 4)))
+    print(sum1(2, 3))
+
 
 
 if __name__ == '__main__':
